@@ -1,0 +1,12 @@
+package testscripts;
+
+import org.testng.annotations.Test;
+import org.testng.annotations.Test;
+
+public class TloginTest {
+
+  @Test
+  public void Leadtest() {
+    throw new RuntimeException("Test not implemented");
+  }
+}

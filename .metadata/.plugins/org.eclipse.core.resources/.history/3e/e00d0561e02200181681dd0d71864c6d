@@ -1,0 +1,4 @@
+username=//*[@id='txt_EmailID']
+password=//*[@id='txt_Pwd']
+signin=//*[@id='btn_Login']
+userlabel=//*[@id='usernamegroup']/label

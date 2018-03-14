@@ -1,0 +1,55 @@
+package testscripts;
+
+import java.io.FileInputStream;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
+
+import org.junit.BeforeClass;
+import org.openqa.selenium.By;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class Keywords {
+	
+	static FirefoxDriver driver;
+	static FileInputStream file;
+	static Properties prop;
+	
+	@BeforeClass
+	public void openbrowser()throws Exception{
+				
+		 System.setProperty("webdriver.gecko.driver","C:\\softwares\\geckodriver.exe"); 
+		 driver=new FirefoxDriver();
+
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		file =new FileInputStream("C:\\Users\\shivarajkumar\\eclipse-workspace\\testscripts\\src\\test\\resources\\ObjectRepositary.properties");
+	prop=new Properties();
+	prop.load(file);
+
+
+	}
+	public void navigate(String data){
+		driver.get(data);
+	}
+	public void input(String data,String objectname){
+		driver.findElement(By.xpath (prop.getProperty(objectname))).sendKeys(data);
+	}
+
+	public void click(String objectname){
+		driver.findElement(By.xpath(prop.getProperty(objectname))).click();
+	}
+	public String VerifyTitle(){
+		String actualvalue=driver.getTitle();
+		return actualvalue;
+	}
+	public String VerifypageText(String objectname)
+	{
+		String actualvalue=driver.findElement(By.xpath(prop.getProperty(objectname))).getText();
+		return actualvalue;
+	}
+	public String VerifyEditBox(String objectname)
+	{
+		String actualvalue=driver.findElement(By.xpath(prop.getProperty(objectname))).getAttribute("value");
+		return actualvalue;
+	}
+
+}
